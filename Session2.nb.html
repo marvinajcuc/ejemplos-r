@@ -244,9 +244,86 @@ planets_df
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>Selection of data frames</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5wbGFuZXRzX2RmWzEsM11cbnBsYW5ldHNfZGZbNCxdXG5wbGFuZXRzX2RmWzE6NSxdXG5wbGFuZXRzX2RmWzE6NSxcInJvdGF0aW9uXCJdXG5wbGFuZXRzX2RmWzE6NSxjKFwicm90YXRpb25cIixcInR5cGVcIildXG5cbnJpbmdzX3ZlY3RvciA8LSBwbGFuZXRzX2RmJHJpbmdzXG5yaW5nc192ZWN0b3JcblxucGxhbmV0c19kZltyaW5nc192ZWN0b3IsXVxucGxhbmV0c19kZlshcmluZ3NfdmVjdG9yLF1cblxuc3Vic2V0KHBsYW5ldHNfZGYsIHN1YnNldCA9IGRpYW1ldGVyIDwgMSlcblxuYGBgIn0= -->
+<pre class="r"><code>
+planets_df[1,3]
+planets_df[4,]
+planets_df[1:5,]
+planets_df[1:5,&quot;rotation&quot;]
+planets_df[1:5,c(&quot;rotation&quot;,&quot;type&quot;)]
+
+rings_vector &lt;- planets_df$rings
+rings_vector
+
+planets_df[rings_vector,]
+planets_df[!rings_vector,]
+
+subset(planets_df, subset = diameter &lt; 1)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Sorting</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYSA8LSBjKDEwMCwxMCwxMDAwKVxub3JkZXIoYSlcbmIgPC0gYVtvcmRlcihhKV1cbmJcblxucG9zaXRpb25zIDwtIG9yZGVyKHBsYW5ldHNfZGYkZGlhbWV0ZXIpXG5wb3NpdGlvbnNcblxucGxhbmV0c19kZltwb3NpdGlvbnMsXVxuXG5gYGAifQ== -->
+<pre class="r"><code>a &lt;- c(100,10,1000)
+order(a)
+b &lt;- a[order(a)]
+b
+
+positions &lt;- order(planets_df$diameter)
+positions
+
+planets_df[positions,]
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Lists</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5teV92ZWN0b3IgPC0gMToxMFxubXlfbWF0cml4IDwtIG1hdHJpeCgxOjksIG5jb2wgPSAzKVxubXlfZGYgPC0gcGxhbmV0c19kZlsxOjQsXVxuXG5cbm15X2xpc3QgPC0gbGlzdChteV92ZWN0b3IsIG15X21hdHJpeCwgbXlfZGYpXG5teV9saXN0XG5cbmBgYCJ9 -->
+<pre class="r"><code>
+my_vector &lt;- 1:10
+my_matrix &lt;- matrix(1:9, ncol = 3)
+my_df &lt;- planets_df[1:4,]
+
+
+my_list &lt;- list(my_vector, my_matrix, my_df)
+my_list
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>creating a named list</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5uYW1lcyhteV9saXN0KSA8LSBjKFwidmVjdG9yXCIsXCJtYXRyaXhcIixcImRhdGEgZnJhbWVcIilcbm15X2xpc3RcbmBgYCJ9 -->
+<pre class="r"><code>
+names(my_list) &lt;- c(&quot;vector&quot;,&quot;matrix&quot;,&quot;data frame&quot;)
+my_list</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>selecting elements from a list</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5teV9saXN0W1sxXV1bNF1cbm15X2xpc3RbWzJdXVsyLF1cbm15X2xpc3RbWzNdXVsyOjMsMToyXVxuXG5gYGAifQ== -->
+<pre class="r"><code>
+my_list[[1]][4]
+my_list[[2]][2,]
+my_list[[3]][2:3,1:2]
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpEYXRhIGZyYW1lcw0KYGBge3J9DQptdGNhcnMNCg0KaGVhZChtdGNhcnMpDQp0YWlsKG10Y2FycykNCg0Kc3RyKG10Y2FycykNCmBgYA0KDQpgYGB7cn0NCm5hbWUgPC0gYygiTWVyY3VyeSIsICJWZW51cyIsICJFYXJ0aCIsICJNYXJzIiwgIkp1cGl0ZXIiLCAiU2F0dXJuIiwgIlVyYW51cyIsICJOZXB0dW5lIikNCnR5cGUgPC0gYygiVGVycmVzdHJpYWwgcGxhbmV0IiwgIlRlcnJlc3RyaWFsIHBsYW5ldCIsICJUZXJyZXN0cmlhbCBwbGFuZXQiLCANCiAgICAgICAgICAiVGVycmVzdHJpYWwgcGxhbmV0IiwgIkdhcyBnaWFudCIsICJHYXMgZ2lhbnQiLCAiR2FzIGdpYW50IiwgIkdhcyBnaWFudCIpDQpkaWFtZXRlciA8LSBjKDAuMzgyLCAwLjk0OSwgMSwgMC41MzIsIDExLjIwOSwgOS40NDksIDQuMDA3LCAzLjg4MykNCnJvdGF0aW9uIDwtIGMoNTguNjQsIC0yNDMuMDIsIDEsIDEuMDMsIDAuNDEsIDAuNDMsIC0wLjcyLCAwLjY3KQ0KcmluZ3MgPC0gYyhGQUxTRSwgRkFMU0UsIEZBTFNFLCBGQUxTRSwgVFJVRSwgVFJVRSwgVFJVRSwgVFJVRSkNCg0KcGxhbmV0c19kZiA8LSBkYXRhLmZyYW1lKG5hbWUsIHR5cGUsIGRpYW1ldGVyLCByb3RhdGlvbiwgcmluZ3MpDQpwbGFuZXRzX2RmDQoNCmBgYA0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpEYXRhIGZyYW1lcw0KYGBge3J9DQptdGNhcnMNCg0KaGVhZChtdGNhcnMpDQp0YWlsKG10Y2FycykNCg0Kc3RyKG10Y2FycykNCmBgYA0KDQpgYGB7cn0NCm5hbWUgPC0gYygiTWVyY3VyeSIsICJWZW51cyIsICJFYXJ0aCIsICJNYXJzIiwgIkp1cGl0ZXIiLCAiU2F0dXJuIiwgIlVyYW51cyIsICJOZXB0dW5lIikNCnR5cGUgPC0gYygiVGVycmVzdHJpYWwgcGxhbmV0IiwgIlRlcnJlc3RyaWFsIHBsYW5ldCIsICJUZXJyZXN0cmlhbCBwbGFuZXQiLCANCiAgICAgICAgICAiVGVycmVzdHJpYWwgcGxhbmV0IiwgIkdhcyBnaWFudCIsICJHYXMgZ2lhbnQiLCAiR2FzIGdpYW50IiwgIkdhcyBnaWFudCIpDQpkaWFtZXRlciA8LSBjKDAuMzgyLCAwLjk0OSwgMSwgMC41MzIsIDExLjIwOSwgOS40NDksIDQuMDA3LCAzLjg4MykNCnJvdGF0aW9uIDwtIGMoNTguNjQsIC0yNDMuMDIsIDEsIDEuMDMsIDAuNDEsIDAuNDMsIC0wLjcyLCAwLjY3KQ0KcmluZ3MgPC0gYyhGQUxTRSwgRkFMU0UsIEZBTFNFLCBGQUxTRSwgVFJVRSwgVFJVRSwgVFJVRSwgVFJVRSkNCg0KcGxhbmV0c19kZiA8LSBkYXRhLmZyYW1lKG5hbWUsIHR5cGUsIGRpYW1ldGVyLCByb3RhdGlvbiwgcmluZ3MpDQpwbGFuZXRzX2RmDQoNCmBgYA0KU2VsZWN0aW9uIG9mIGRhdGEgZnJhbWVzDQpgYGB7cn0NCg0KcGxhbmV0c19kZlsxLDNdDQpwbGFuZXRzX2RmWzQsXQ0KcGxhbmV0c19kZlsxOjUsXQ0KcGxhbmV0c19kZlsxOjUsInJvdGF0aW9uIl0NCnBsYW5ldHNfZGZbMTo1LGMoInJvdGF0aW9uIiwidHlwZSIpXQ0KDQpyaW5nc192ZWN0b3IgPC0gcGxhbmV0c19kZiRyaW5ncw0KcmluZ3NfdmVjdG9yDQoNCnBsYW5ldHNfZGZbcmluZ3NfdmVjdG9yLF0NCnBsYW5ldHNfZGZbIXJpbmdzX3ZlY3RvcixdDQoNCnN1YnNldChwbGFuZXRzX2RmLCBzdWJzZXQgPSBkaWFtZXRlciA8IDEpDQoNCmBgYA0KDQpTb3J0aW5nDQoNCmBgYHtyfQ0KYSA8LSBjKDEwMCwxMCwxMDAwKQ0Kb3JkZXIoYSkNCmIgPC0gYVtvcmRlcihhKV0NCmINCg0KcG9zaXRpb25zIDwtIG9yZGVyKHBsYW5ldHNfZGYkZGlhbWV0ZXIpDQpwb3NpdGlvbnMNCg0KcGxhbmV0c19kZltwb3NpdGlvbnMsXQ0KDQpgYGANCg0KTGlzdHMNCmBgYHtyfQ0KDQpteV92ZWN0b3IgPC0gMToxMA0KbXlfbWF0cml4IDwtIG1hdHJpeCgxOjksIG5jb2wgPSAzKQ0KbXlfZGYgPC0gcGxhbmV0c19kZlsxOjQsXQ0KDQoNCm15X2xpc3QgPC0gbGlzdChteV92ZWN0b3IsIG15X21hdHJpeCwgbXlfZGYpDQpteV9saXN0DQoNCmBgYA0KDQpjcmVhdGluZyAgYSBuYW1lZCBsaXN0DQoNCmBgYHtyfQ0KDQpuYW1lcyhteV9saXN0KSA8LSBjKCJ2ZWN0b3IiLCJtYXRyaXgiLCJkYXRhIGZyYW1lIikNCm15X2xpc3QNCmBgYA0Kc2VsZWN0aW5nIGVsZW1lbnRzIGZyb20gYSBsaXN0DQpgYGB7cn0NCg0KbXlfbGlzdFtbMV1dWzRdDQpteV9saXN0W1syXV1bMixdDQpteV9saXN0W1szXV1bMjozLDE6Ml0NCg0KYGBgDQoNCg==</div>
 
 
 
