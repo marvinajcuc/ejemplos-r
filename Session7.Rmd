@@ -1,0 +1,63 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+library(tidyverse)
+sets <- read_csv('sets.csv')
+themes <- read_csv('themes.csv')
+parts <- read_csv('parts.csv')
+part_categories <- read_csv('part_categories.csv')
+
+
+
+```
+```{r}
+counties <- read_csv('counties.csv')
+counties
+
+counties %>%
+  dplyr::select(state, county, population,professional:production)
+
+counties %>%
+  dplyr::select(state,county, population, starts_with("income"))
+```
+the rename verb
+```{r}
+
+counties %>%
+  count(state) %>%
+  rename(num_counties=n)
+
+counties %>%
+  dplyr::select(state,county, poverty_rate=poverty)
+```
+using transmute
+```{r}
+
+counties %>%
+  transmute(state,county,population,density = population/land_area) %>%
+  filter(population>1000000) %>%
+  arrange(density)
+```
+```{r}
+
+counties %>%
+  rename(unemployment_rate=unemployment)
+
+counties %>%
+  dplyr::select(state,county, contains("poverty"))
+```
+```{r}
+counties %>%
+  mutate(fraction_women=women/population)
+
+counties %>%
+  transmute(state,county,employment_rate=employed/population)
+```
+Joining data with dplyr
+```{r}
+
+sets
+```
+
