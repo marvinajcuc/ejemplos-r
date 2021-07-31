@@ -61,3 +61,20 @@ Joining data with dplyr
 sets
 ```
 
+```{r}
+
+view(parts)
+view(part_categories)
+
+view_parts <- parts%>%
+  inner_join(part_categories, by = c("part_cat_id"="id"))
+
+view(view_parts)
+
+view_parts <- parts%>%
+  inner_join(part_categories, by = c("part_cat_id"="id"), suffix=c("_parts","_parts_categories"))
+
+view(view_parts)
+
+```
+
